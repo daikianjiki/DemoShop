@@ -16,4 +16,8 @@ public class UserService {
     public ResponseEntity<User> registerUser(User user) {
         return new ResponseEntity<>(userRepo.save(user), HttpStatus.OK);
     }
+
+    public ResponseEntity<User> loginUser(User user) {
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
 }
