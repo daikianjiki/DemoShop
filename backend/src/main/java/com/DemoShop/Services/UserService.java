@@ -18,6 +18,11 @@ public class UserService {
     }
 
     public ResponseEntity<User> loginUser(User user) {
-        return new ResponseEntity<>(user, HttpStatus.OK);
+        User foundUser = userRepo.findByUsername(user.getUsername());
+        if (!foundUser.getPassword().equals(user.getPassword())) {
+            return null;
+        } else {
+            return new ResponseEntity<>(foundUser, HttpStatus.OK);
+        }
     }
 }
