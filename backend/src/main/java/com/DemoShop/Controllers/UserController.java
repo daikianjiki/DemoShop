@@ -4,6 +4,7 @@ import com.DemoShop.Models.User;
 import com.DemoShop.Services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +23,11 @@ public class UserController {
     @PostMapping
     public ResponseEntity<User> loginUser(User user) {
         return userService.loginUser(user);
+    }
+
+    @PatchMapping
+    public ResponseEntity<User> updateUser(long id) {
+        return userService.updateUser(id);
     }
 
 }

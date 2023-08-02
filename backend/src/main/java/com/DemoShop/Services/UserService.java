@@ -18,11 +18,17 @@ public class UserService {
     }
 
     public ResponseEntity<User> loginUser(User user) {
-        User foundUser = userRepo.findByUsername(user.getUsername());
+        User foundUser = userRepo.findByUsername(user.getEmail());
         if (!foundUser.getPassword().equals(user.getPassword())) {
             return null;
         } else {
             return new ResponseEntity<>(foundUser, HttpStatus.OK);
         }
+    }
+
+    public ResponseEntity<User> updateUser(long id) {
+        User updateUser = userRepo.findById(id).get();
+
+
     }
 }
