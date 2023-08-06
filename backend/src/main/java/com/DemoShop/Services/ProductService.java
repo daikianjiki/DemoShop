@@ -22,4 +22,8 @@ public class ProductService {
     public ResponseEntity<?> getProductById(long id) {
         return new ResponseEntity<>(productRepo.findById(id), HttpStatus.OK);
     }
+
+    public ResponseEntity<Product> createProduct(Product product) {
+        return new ResponseEntity<>(productRepo.save(product), HttpStatus.CREATED);
+    }
 }
