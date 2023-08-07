@@ -27,7 +27,7 @@ public class UserService {
     }
 
     public ResponseEntity<User> updateUser(User user, long id) {
-        if (userRepo.existsById(id)){
+        if (userRepo.existsById(id)) {
             User updatedUser = userRepo.findById(id).get();
             updatedUser.setName(user.getName());
             updatedUser.setEmail(user.getEmail());

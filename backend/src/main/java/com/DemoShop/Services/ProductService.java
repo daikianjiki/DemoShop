@@ -26,4 +26,19 @@ public class ProductService {
     public ResponseEntity<Product> createProduct(Product product) {
         return new ResponseEntity<>(productRepo.save(product), HttpStatus.CREATED);
     }
+
+    public ResponseEntity<Product> updateProduct(Product product, long id) {
+        if (productRepo.existsById(id)) {
+            Product updatedProduct = productRepo.findById(id).get();
+            updatedProduct.setName(product.getName());
+            updatedProduct.setPrice(product.getPrice());
+            updatedProduct.setImage(product.getImage());
+            updatedProduct.setDescription(product.getDescription());
+            updatedProduct.setRating(product.getRating());
+            updatedProduct.setReview(product.getReview());
+            return new ResponseEntity<>(productRepo.save(updatedProduct), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }
