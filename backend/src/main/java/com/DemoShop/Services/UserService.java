@@ -18,7 +18,7 @@ public class UserService {
     }
 
     public ResponseEntity<User> loginUser(User user) {
-        User foundUser = userRepo.findByUsername(user.getEmail());
+        User foundUser = userRepo.findByEmail(user.getEmail());
         if (!foundUser.getPassword().equals(user.getPassword())) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         } else {
