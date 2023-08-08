@@ -41,4 +41,13 @@ public class ProductService {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    public ResponseEntity deleteProduct(long id) {
+        if (productRepo.existsById(id)) {
+            productRepo.deleteById(id);
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+    }
 }
