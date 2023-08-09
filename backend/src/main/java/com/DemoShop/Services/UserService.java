@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -35,6 +37,18 @@ public class UserService {
             updatedUser.setPassword(user.getPassword());
             updatedUser.setPhoneNumber(user.getPhoneNumber());
             return new ResponseEntity<>(userRepo.save(updatedUser), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    public ResponseEntity<List<?>> getAllUsers() {
+        return new ResponseEntity<>(userRepo.findAll(), HttpStatus.OK);
+    }
+
+    public ResponseEntity<User> geUserById(long id) {
+        if (userRepo.existsById(id)) {
+            return  new ResponseEntity<>(userRepo.findById(id).get(), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
