@@ -30,12 +30,12 @@ public class ProductController {
         return productService.createProduct(product);
     }
 
-    @PatchMapping("update/{id}")
+    @PatchMapping("{id}")
     public ResponseEntity<Product> updateProduct(@RequestBody Product product, @PathVariable long id) {
         return productService.updateProduct(product, id);
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("{id}")
     public ResponseEntity deleteProduct(@PathVariable long id) {
         return productService.deleteProduct(id);
     }
