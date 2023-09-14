@@ -1,5 +1,6 @@
 import HomePage from "../pages/HomePage";
 import { Link, Routes, Route } from 'react-router-dom'
+import ProductPage from "../pages/ProductPage";
 
 
 export default function Navbar() {
@@ -14,7 +15,7 @@ export default function Navbar() {
 
             <Routes>
                 <Route path="/home" element={<HomePage/>} />
-                <Route path="/products" element={<HomePage/>} />
+                <Route path="/products" element={<ProductPage/>} />
             </Routes>
         </div>
     )
