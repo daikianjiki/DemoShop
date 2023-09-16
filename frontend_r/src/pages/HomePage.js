@@ -60,6 +60,19 @@ export default function HomePage() {
         setPhoneNumber('')
     }
 
+    function loginHandler(event) {
+        event.preventDefault()
+
+        axios.post('http://localhost:9000/users/login', userData)
+        .then(res => {
+            console.log(res.status)
+            console.log(res.data)
+        })
+
+        setEmail('')
+        setPassword('')
+    }
+
     return (
         <>
             <form onSubmit={submitHanlder}>
@@ -109,6 +122,28 @@ export default function HomePage() {
                     value={phoneNumber}
                     onChange={phoneNumberChangeHandler} />
                 <button className="btn btn-primary" type="submit">Register</button>
+            </form>
+
+            <form onSubmit={loginHandler}>
+                <label className="form-label">Email:</label>
+                    <input
+                        className="form-control"
+                        ref={emailRef}
+                        type="email"
+                        id="email-login"
+                        placeholder=""
+                        value={email}
+                        onChange={emailChangeHandler} />
+                    <label className="form-label">Password:</label>
+                    <input 
+                        className="form-control"
+                        ref={passwordRef}
+                        type="password"
+                        id="passowrd-login" 
+                        placeholder=""
+                        value={password}
+                        onChange={passwordChangeHandler} />
+                <button className="btn btn-success" type="submit">Login</button>
             </form>
         </>
     )
